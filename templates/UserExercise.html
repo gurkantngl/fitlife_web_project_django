@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'UserExercise.css' %}">
+    
+        <title>Spor Uygulaması - Antrenman Programı</title>
+    </head>
+<body>
+
+    <header>
+        <h1>FitLife</h1>
+        <p>Antrenman Programı</p>
+    </header>
+
+    <section>
+        <div class="video-container">
+            <iframe width="400" height="200" src="https://www.youtube.com/watch?v=dMUFukD8J7Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <div id="calendar"></div>
+
+        <div class="exercise">
+            <div class="exercise-content">
+                <h2>Hareket Adı: {{program.exercise1}} </h2>
+                <p>Set: {{program.set1}}</p>
+                <p>Tekrar: {{program.tekrar1}} </p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-content">
+                <h2>Hareket Adı: {{program.exercise2}} </h2>
+                <p>Set: {{program.set2}}</p>
+                <p>Tekrar: {{program.tekrar2}}</p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-content">
+                <h2>Hareket Adı: {{program.exercise3}} </h2>
+                <p>Set: {{program.set3}}</p>
+                <p>Tekrar: {{program.tekrar3}}</p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-content">
+                <h2>Hareket Adı: {{program.exercise4}} </h2>
+                <p>Set: {{program.set4}}</p>
+                <p>Tekrar: {{program.tekrar4}}</p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-content">
+                <h2>Hareket Adı: {{program.exercise5}}</h2>
+                <p>Set: {{program.set5}}</p>
+                <p>Tekrar: {{program.tekrar5}}</p>
+            </div>
+        </div>
+    </section>
+    <form action="{% url 'updateExerciseProgram' client_id=client_id gun_sayisi=gun_sayisi %}" method="post">
+        {% csrf_token %}
+        <label>
+            {% for i in " "|rjust:gun_sayisi %}
+                <input type="checkbox" name="agree {{forloop.counter}}" value="1"> Gün {{ forloop.counter }}
+            {% endfor %}
+        </label>
+        <br>
+        <button type="submit">İlerlemeleri Kaydet</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date();
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var formattedDate = today.toLocaleDateString('en-US', options);
+            
+            var dateElement = document.createElement('p');
+            dateElement.textContent = 'Today: ' + formattedDate;
+            dateElement.style.color = '#fff';
+            
+            var header = document.querySelector('header');
+            header.appendChild(dateElement);
+        });
+    </script>
+    
+  
+</body>
+</html>

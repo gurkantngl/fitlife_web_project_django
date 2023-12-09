@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'AddExercise.css' %}">
+    <title>Egzersiz Sayfası</title>
+</head>
+<body>
+    <div class="exercise-container">
+        <label for="hedef">Hedef:<label>
+            <select id="hedef" name="hedef">
+                <option value="Kilo Alma">Kilo Alma</option>
+                <option value="Kilo Verme">Kilo Verme</option>
+                <option value="Kiloyu Koruma">Kiloyu Koruma</option>
+                <option value="Kas Kazanma">Kas Kazanma</option>
+            </select>
+        <br>
+        <br>
+        <form method="post" action="{% url 'saveExerciseProgram' client_id %}">
+            {% csrf_token %}
+            <div class="exercise">
+                <label for="start-date">Başlangıç Zamanı:</label>
+                <input type="date" name="start-date" id="start-date">
+                <label for="finish-date">Bitiş Zamanı:</label>
+                <input type="date" name="finish-date" id="finish-date">
+            </div>
+
+            <div class="exercise">
+                <label for="exercise1">Egzersiz 1:</label>
+                <input type="text" name="exercise1" id="exercise1" placeholder="Egzersiz adı">
+                <label for="set">Set sayısı:</label>
+                <input type="text" name="set1" id="set1">
+                <label for="set">Tekrar sayısı:</label>
+                <input type="text" name="tekrar1" id="tekrar1">
+            </div>
+            <br>
+            <div class="exercise">
+                <label for="exercise2">Egzersiz 2:</label>
+                <input type="text" name="exercise2" id="exercise2" placeholder="Egzersiz adı">
+                <label for="set2">Set sayısı:</label>
+                <input type="text" name="set2" id="set2">
+                <label for="tekrar2">Tekrar sayısı:</label>
+                <input type="text" name="tekrar2" id="tekrar2">
+            </div>
+            <br>
+            <div class="exercise">
+                <label for="exercise3">Egzersiz 3:</label>
+                <input type="text" name="exercise3" id="exercise3" placeholder="Egzersiz adı">
+                <label for="set3">Set sayısı:</label>
+                <input type="text" name="set3" id="set3">
+                <label for="tekrar3">Tekrar sayısı:</label>
+                <input type="text" name="tekrar3" id="tekrar3">
+            </div>
+            <br>
+            <div class="exercise">
+                <label for="exercise4">Egzersiz 4:</label>
+                <input type="text" name="exercise4" id="exercise4" placeholder="Egzersiz adı">
+                <label for="set4">Set sayısı:</label>
+                <input type="text" name="set4" id="set4">
+                <label for="tekrar4">Tekrar sayısı:</label>
+                <input type="text" name="tekrar4" id="tekrar4">
+            </div>
+            <br>
+            <div class="exercise">
+                <label for="exercise5">Egzersiz 5:</label>
+                <input type="text" name="exercise5" id="exercise5" placeholder="Egzersiz adı">
+                <label for="set5">Set sayısı:</label>
+                <input type="text" name="set5" id="set5">
+                <label for="tekrar5">Tekrar sayısı:</label>
+                <input type="text" name="tekrar5" id="tekrar5">
+            </div>
+
+            <button type="submit">Kaydet</button>
+        </form>
+    </div>
+
+    <script>
+        function saveData() {
+            // Burada verileri kaydetme işlemlerini gerçekleştirebilirsiniz.
+            alert('Veriler başarıyla kaydedildi!');
+        }
+    </script>
+</body>
+</html>

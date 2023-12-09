@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends "layout.html"%}
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FitLife-Kayıt</title>
+    <link rel="stylesheet" href="{% static 'member-register.css' %}">
+</head>
+
+{% block body %}
+    <div class="background">
+        <div class="register-container">
+            <div class="register-form">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <h3>Kayıt Ol</h3>
+                        <hr>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form|crispy}}
+                            <br>
+                            <button type="submit" class="btn btn-danger">Kayıt Ol</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock body %}
+
+</html>
+
+

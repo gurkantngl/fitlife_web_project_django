@@ -1,0 +1,251 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8eb;
+    margin: 0;
+    padding: 0;
+}
+
+header, nav {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+section {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile img {
+    max-width: 150px;
+    border-radius: 50%;
+}
+
+.profile-info-update label {
+    display: block;
+    margin-bottom: 5px; /* Kısıldı */
+}
+
+.profile-info-update input,
+.profile-info-update select {
+    width: calc(100% - 20px);
+    padding: 6px; /* Kısıldı */
+    margin-bottom: 10px; 
+    box-sizing: border-box;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info p {
+    margin: 10px 0;
+}
+
+.profile-info img {
+    max-width: 150px;
+    border-radius: 50%;
+    margin-top: 20px; 
+}
+
+.progress-records {
+    margin-top: 30px; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; 
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.message-box {
+    margin-top: 30px;
+}
+
+#exercise,
+#nutrition {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center-align the cards */
+}
+
+.exercise-card,
+.nutrition-card {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.exercise-card:hover,
+.nutrition-card:hover {
+    transform: scale(1.05);
+}
+
+.exercise-card img,
+.nutrition-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+}
+
+.exercise-card-content,
+.nutrition-card-content {
+    padding: 15px;
+}
+
+.exercise-card h3,
+.nutrition-card h3 {
+    margin-top: 0;
+}
+
+.exercise-card p,
+.nutrition-card p {
+    color: #555;
+}
+
+.exercise-card a,
+.nutrition-card a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 0 0 8px 8px;
+    margin-top: 10px;
+}
+
+.exercise-card a:hover,
+.nutrition-card a:hover {
+    background-color: #45a049;
+}
+
+#messages {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message-box {
+    margin-top: 20px;
+}
+
+#message-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#message-table, #message-table th, #message-table td {
+    border: 1px solid #ddd;
+}
+
+#message-table th, #message-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+#message-table th {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+#message-form {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#message-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#message-form input,
+#message-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+#message-form textarea {
+    resize: vertical;
+}
+
+#message-form input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#message-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#graphics {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#progressChart {
+    max-width: 100%;
+    margin-top: 20px;
+}

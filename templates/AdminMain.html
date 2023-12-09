@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'AdminMain.css' %}">
+    <title>FitLife -  Admin Panel</title>
+</head>
+<body>
+    <div class="admin-panel">
+        <h1>Fitness Admin Panel</h1>
+
+        <div>
+            <button id="userButton">Üyeler</button>
+            <button id="coachButton">Antrenörler</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("userButton").addEventListener("click", function() {
+            window.location.href = "/adminPanel/users/";
+        });
+
+        document.getElementById("coachButton").addEventListener("click", function() {
+            window.location.href = "/adminPanel/trainers/";
+        });
+    </script>
+</body>
+</html>

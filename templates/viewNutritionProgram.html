@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CoachMain.css' %}">
+    <title>Nutrition Program</title>
+</head>
+<body>
+    <p>Hedef: {{hedef}}</p>
+    <p>Kalori Hedefi: {{kalori}}</p>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>Yemek1</th>
+            <th>Yemek2</th>
+            <th>Yemek3</th>
+        </tr>
+        {% for ogun in program%}
+            <tr>
+                    
+                <td> {{ogun.yemek_1}} </td>
+                <td> {{ogun.yemek_2}} </td>
+                <td> {{ogun.yemek_3}} </td>
+                    
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

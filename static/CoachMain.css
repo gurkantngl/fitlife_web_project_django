@@ -1,0 +1,79 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8eb; /* Hafif yeşil tonu */
+    margin: 0;
+    padding: 0;
+}
+
+header, nav {
+    background-color: #4caf50; /* Parlak yeşil tonu */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+section {
+    background-color: #ffffff; /* Beyaz arka plan */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.trainer-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trainer-profile img {
+    max-width: 100px;
+    border-radius: 50%;
+}
+
+.client-list {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4caf50; /* Parlak yeşil tonu */
+    color: #fff;
+}
+
+.communication {
+    margin-left: 5%;
+}

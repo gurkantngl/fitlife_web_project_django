@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CoachMain.css' %}">
+    <title>TrainerMain</title>
+</head>
+<body>
+
+    <header>
+        <h1> {{trainer.name}} {{trainer.surname}} </h1>
+    </header>
+
+    <nav>
+    </nav>
+
+    <section id="profile">
+        <h2>Profil</h2>
+        <div class="trainer-profile">
+            <div class="profile-info-update">
+                <form method= "post" action="{% url 'updateProfile' trainer.id %}">
+                    {% csrf_token %}
+                    <label for="trainer-name">Ad:</label>
+                    <input type="text" id="name" name="name" value="{{trainer.name}}" required>
+                    <br>
+
+                    <label for="trainer-surname">Soyad:</label>
+                    <input type="text" id="surname" name="surname" value="{{trainer.surname}}" required>
+                    <br>
+
+                    <label for="trainer-userrname">Kullanıcı Adı:</label>
+                    <input type="text" id="username" name="username" value="{{trainer.username}}" required>
+                    <br>
+
+                    <label for="email">E-Posta:</label>
+                    <input type="text" id="email" name="email" value="{{ trainer.email }}" required>
+                    <br>
+                    <button type="submit">Güncelle</button>
+                </form>
+                <br>
+                <br>
+
+                <form method= "post" action="{% url 'updateExpert' trainer.id %}">
+                    {% csrf_token %}
+                    <label for="Uzmanlık Alanları">Uzmanlık Alanı Ekle</label>
+                    <br>
+                        <select name="uzmanlik_alani" id="uzmanlik_alani">
+                            {% for area in areas %}
+                                <option value="{{ area }}">{{ area }}</option>
+                            {% endfor %}
+                        </select>
+                    <br>
+                    <button type="submit">Uzmanlık Alanı Ekle</button>
+                </form>
+            </div>
+            <div class="profile-info">
+                <div class="profile-details">
+                    <p><strong>Kullanıcı Adı:</strong> {{trainer.username}} </p>
+                    <p><strong>Ad Soyad:</strong>{{trainer.name}} {{trainer.surname}} </p>
+                    <p><strong>E-mail:</strong> {{trainer.email}} </p>
+                    <p><strong>Uzmanlık Alanları:</strong> {{trainer_experties}} </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients">
+        <h2>Danışanlar</h2>
+        <div class="client-list">
+            <table>
+                <tr>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Hedef</th>
+                    <th>İlerleme</th>
+                    <th>Egzersiz Planı Görüntüle</th>
+                    <th>Programlar</th>
+                    <th>Egzersiz Planı Ekle/Düzenle</th>
+                    <th>Beslenme Planları</th>
+                    <th>Beslenme Planı Ekle/Düzenle</th>
+                    <th>Beslenme Planı Sil</th>
+                </tr>
+                    {% for client in clients %}
+                        <tr>
+                            <td> {{client.name}} </td>
+                            <td> {{client.surname}} </td>
+                            <td> {{client.hedef}} </td>
+                            <td> {{client.programCounter}} </td>
+                            <td>    
+                                <form method="post" action="{% url 'viewExerciseProgram' client.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Egzersiz Planı Görüntüle</button>
+                                </form>
+                            </td>
+                            <td>    
+                                <form method="post" action="{% url 'addExerciseProgram' client.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Egzersiz Planı Ekle</button>
+                                </form>
+                            </td>
+                            <td>    
+                                <form method="post" action="{% url 'deleteExerciseProgram' client.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Egzersiz Planı Sil</button>
+                                </form>
+                            </td>
+                            <td>    
+                                <form method="post" action="{% url 'viewNutritionProgram' client.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Beslenme Planı Görüntüle</button>
+                                </form>
+                            </td>
+                            <td>    
+                                <form method="post" action="{% url 'addNutritionProgram' client.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Beslenme Planı Ekle/Düzenle</button>
+                                </form>
+                            </td>
+                            <td>    
+                                <form method="post" action="{% url 'deleteNutritionProgram' client.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Beslenme Planı Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </section>
+    
+    <section id="communication">
+        <h2>Mesajlar</h2>
+        <div class="communication">
+            <table id="message-table">
+                <tr>
+                    <th>Gönderen</th>
+                    <th>Gelen Mesajlar</th>
+                </tr>
+    
+                {% for text in messages %}
+                    <tr>
+                        <td> {{text.senderName}} </td>
+                        <td> {{text.message}} </td>
+                    </tr>
+                    
+                {% endfor %}
+            </table>
+
+            <br>
+            <form method="post" action="{% url 'sendMessage' trainer.username %}">
+                {% csrf_token %}
+                    <select name="client">
+                        {% for client in clients %}
+                        <option value="{{client.name}} {{client.surname}}"> {{client.name}} {{client.surname}} </option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <br>
+                <textarea id="message" name="message" rows="4" cols="50"></textarea>
+                <br><br>
+                <button type="submit">Mesaj Gönder</button>
+            </form>    
+        </div>
+    </section>
+
+</body>
+</html>

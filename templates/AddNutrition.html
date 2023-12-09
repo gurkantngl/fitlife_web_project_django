@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'AddNutrition.css' %}">
+    <title>Diyet Listesi</title>
+</head>
+<body>
+    <div class="diet-container">
+        <div class="meal">
+            <h2>Öğün 1</h2>
+            <form method="post" action="{% url 'saveNutritionProgram' client_id %}">
+                {% csrf_token %}
+                    <div class="food">
+                        <label for="hedef">Hedef:<label>
+                        <select id="hedef" name="hedef">
+                            <option value="Kilo Alma">Kilo Alma</option>
+                            <option value="Kilo Verme">Kilo Verme</option>
+                            <option value="Kiloyu Koruma">Kiloyu Koruma</option>
+                            <option value="Kas Kazanma">Kas Kazanma</option>
+                        </select>
+                        <br>
+                        <br>
+                        <label for="kalori">Kalori Hedefi:</label>
+                        <input name="kalori" type="text" id="kalori" placeholder="Kalori Hedefi">
+                        <br>
+                        <br>
+                        <label for="food1-1">Yemek 1:</label>
+                        <input name="food1-1" type="text" id="food1-1" placeholder="Yemek adı">
+                    </div>
+                    <div class="food">
+                        <label for="food1-2">Yemek 2:</label>
+                        <input name="food1-2" type="text" id="food1-2" placeholder="Yemek adı">
+                    </div>
+                    <div class="food">
+                        <label for="food1-3">Yemek 3:</label>
+                        <input name="food1-3" type="text" id="food1-3" placeholder="Yemek adı">
+                    </div>
+                </div>
+
+                <div class="meal">
+                    <h2>Öğün 2</h2>
+                    <div class="food">
+                        <label for="food2-1">Yemek 1:</label>
+                        <input name="food2-1" type="text" id="food2-1" placeholder="Yemek adı">
+                    </div>
+                    <div class="food">
+                        <label for="food2-2">Yemek 2:</label>
+                        <input name="food2-2" type="text" id="food2-2" placeholder="Yemek adı">
+                    </div>
+                    <div class="food">
+                        <label for="food2-3">Yemek 3:</label>
+                        <input name="2-3" type="text" id="food2-3" placeholder="Yemek adı">
+                    </div>
+                </div>
+
+                <div class="meal">
+                    <h2>Öğün 3</h2>
+                    <div class="food">
+                        <label for="food3-1">Yemek 1:</label>
+                        <input name="food3-1" type="text" id="food3-1" placeholder="Yemek adı">
+                    </div>
+                    <div class="food">
+                        <label for="food3-2">Yemek 2:</label>
+                        <input name="food3-2" type="text" id="food3-2" placeholder="Yemek adı">
+                    </div>
+                    <div class="food">
+                        <label for="food3-3">Yemek 3:</label>
+                        <input name="food3-3" type="text" id="food3-3" placeholder="Yemek adı">
+                    </div>
+                </div>
+
+                <button type="submit">Kaydet</button>
+            </form>
+        </div>
+    
+
+    <script>
+        function saveDietData() {
+            // Burada diyet verilerini kaydetme işlemlerini gerçekleştirebilirsiniz.
+            alert('Diyet verileri başarıyla kaydedildi!');
+        }
+    </script>
+</body>
+</html>

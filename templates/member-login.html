@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'member-login.css' %}">
+    <title>FitLife-Üye Giriş</title>
+</head>
+
+{% block body %}
+
+    <div class="container">
+        <div class="register-container">
+            <div class="register-form">
+                <div class="col-md-6 offset-md-3">
+                    <h2>Üye Girişi</h2>
+                    <form method="post">
+                            <br>
+                            {% csrf_token %}
+                            <label for="user-email">E-Mail:</label>
+                            <input type="email" name="email">
+                            <br>
+                            <br>
+                            <label for="user-password">Parola:</label>
+                            <input type="password" id="password" name="password">
+                            <br>
+                            <a href="forgetpassword/">Şifremi Unuttum</a> 
+                            <button type="submit" class="button-style">Giriş Yap</button>    
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="register-section">
+             <a href="register" class="button-style">Kayıt Ol</a>
+        </div>
+    </div>
+    
+{% endblock body %}
+</html>

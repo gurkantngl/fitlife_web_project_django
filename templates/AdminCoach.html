@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife- Admin Antrenör</title>
+    <link rel="stylesheet" href="{% static 'AdminCoach.css' %}">
+</head>
+{% block body %}
+<div class="container">
+    <h1>Antrenör Düzenleme</h1>
+
+    <div class="search-add-container">
+
+        <div class="add-coach-container">
+            <button onclick="toggleAddCoachForm()">Yeni Antrenör Ekle</button>
+            <form id="addTrainerForm" style="display: none;" method="post" enctype="multipart/form-data">
+                <br>
+                {% csrf_token %}
+                {{form|crispy}}
+                <br>
+                <button type="submit" class="btn btn-danger">Ekle</button>
+            </form>
+        </div>
+    </div>
+
+    <table id="trainerTable">
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>E-Mail</th>
+            <th>Aktif - Pasif</th>
+        </tr>
+
+        {% for trainer in trainerList %}
+            <tr>
+                <form id="activeForm" method="post" action="{% url 'trainerUpdate' trainer.id %}">
+                    {% csrf_token %}
+                    <td><input type="text" name="name" value="{{ trainer.name }}"></td>
+                    <td><input type="text" name="surname" value="{{ trainer.surname }}"></td>
+                    <td><input type="email" name="email" value="{{ trainer.email }}"></td>
+                    <td>
+                        <button type="submit">Bilgileri Güncelle</button>
+                    </td>
+                </form>    
+                <td> 
+                    <form id="activeForm" method="post" action="{% url 'trainerActivePassive' trainer.email %}">
+                        {% csrf_token %}
+                        {% if trainer.is_active == True %}
+                            <button type="submit">Hesabı devre dışı bırak</button>
+                        {% else %}
+                            <button type="submit">Hesabı etkinleştir</button>
+                        {% endif %}
+                    </form>  
+                </td>    
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function searchCoach() {
+        // Burada antrenör arama işlemleri gerçekleştirilecek
+        // ve sonuçları tabloya ekleyecek bir fonksiyon yazılmalı
+    }
+
+    function toggleAddCoachForm() {
+        var addTrainerForm = document.getElementById("addTrainerForm");
+        addTrainerForm.style.display = addTrainerForm.style.display === "none" ? "block" : "none";
+    }
+</script>
+{% endblock body %}
+</html>

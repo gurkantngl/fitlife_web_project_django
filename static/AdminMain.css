@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Açık gri arka plan rengi */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.admin-panel {
+    max-width: 800px;
+    padding: 20px;
+    background-color: #ffffff; /* Beyaz arka plan rengi */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #28a745; /* Yeşil başlık rengi */
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background-color: #28a745; /* Yeşil düğme rengi */
+    color: #ffffff; /* Beyaz metin rengi */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838; /* Hover durumunda daha koyu yeşil renk */
+}

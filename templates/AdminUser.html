@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife- Admin Üye</title>
+    <link rel="stylesheet" href="{% static 'AdminCoach.css' %}">
+</head>
+{% block body %}
+<div class="container">
+    <h1>Üye Düzenleme</h1>
+
+    <div class="search-add-container">
+
+        <div class="add-coach-container">
+            <button onclick="toggleAddUserForm()">Yeni Üye Ekle</button>
+            <form id="addUserForm" style="display: none;" method="post" enctype="multipart/form-data">
+                <br>
+                {% csrf_token %}
+                {{form|crispy}}
+                <br>
+                <button type="submit" class="btn btn-danger">Ekle</button>
+            </form>
+        </div>
+    </div>
+
+    <table id="userTable">
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Doğum Tarihi</th>
+            <th>Cinsiyet</th>
+            <th>E-posta</th>
+            <th>Telefon No</th>
+            <th>Güncelle</th>
+            <th>Aktif - Pasif</th>
+        </tr>
+
+        {% for user in userList %}
+            <tr>
+                <form id="activeForm" method="post" action="{% url 'userUpdate' user.id %}">
+                    {% csrf_token %}
+                    <td><input type="text" name="name" value="{{ user.name }}"></td>
+                    <td><input type="text" name="surname" value="{{ user.surname }}"></td>
+                    <td><input type="date" name="birth_date" value="{{ user.dogum_tarihi }}"></td>
+                    <td>
+                        <select name="gender">
+                            <option value="Erkek" {% if user.cinsiyet == 'Erkek' %}selected{% endif %}>Erkek</option>
+                            <option value="Kadın" {% if user.cinsiyet == 'Kadın' %}selected{% endif %}>Kadın</option>
+                        </select>
+                    </td>
+                    <td><input type="email" name="email" value="{{ user.email }}"></td>
+                    <td><input type="tel" name="phone" value="{{ user.telefon }}"></td>
+                    <td>
+                            <button type="submit">Bilgileri Güncelle</button>
+               
+                    </td>
+                </form>  
+                <td>
+                    <!-- <button id="toggleButton" type="submit" onclick="return toggleButton()">Devre dışı bırak</button> -->
+                    <form id="activeForm" method="post" action="{% url 'userActivePassive' user.email %}">
+                        {% csrf_token %}
+                        {% if user.is_active == True %}
+                            <button type="submit">Hesabı devre dışı bırak</button>
+                        {% else %}
+                            <button type="submit">Hesabı etkinleştir</button>
+                        {% endif %}
+                    </form>         
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function searchUser() {
+        // Burada üye arama işlemleri gerçekleştirilecek
+        // ve sonuçları tabloya ekleyecek bir fonksiyon yazılmalı
+    }
+
+    function toggleAddUserForm() {
+        var addUserForm = document.getElementById("addUserForm");
+        addUserForm.style.display = addUserForm.style.display === "none" ? "block" : "none";
+    }
+
+</script>
+{% endblock body %}
+</html>

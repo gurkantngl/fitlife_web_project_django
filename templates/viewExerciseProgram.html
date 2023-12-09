@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CoachMain.css' %}">
+    <title>Exercise Program</title>
+</head>
+<body>
+    <p>Gün Sayısı: {{gun_sayisi}} </p>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>Egzersiz1</th>
+            <th>Egzersiz2</th>
+            <th>Egzersiz3</th>
+            <th>Egzersiz4</th>
+            <th>Egzersiz5</th>
+        </tr>
+            <tr>   
+                <td>{{program.exercise1}} Set: {{program.set1}} Tekrar: {{program.tekrar1}} </td>
+                <td>{{program.exercise2}} Set: {{program.set2}} Tekrar: {{program.tekrar2}} </td>
+                <td>{{program.exercise3}} Set: {{program.set3}} Tekrar: {{program.tekrar3}} </td>
+                <td>{{program.exercise4}} Set: {{program.set4}} Tekrar: {{program.tekrar4}} </td>
+                <td>{{program.exercise5}} Set: {{program.set5}} Tekrar: {{program.tekrar5}} </td>    
+            </tr>
+    </table>
+</body>
+</html>

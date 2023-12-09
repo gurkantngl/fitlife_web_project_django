@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'UserMain.css' %}">
+    <title>UserMain</title>
+</head>
+<body>
+    
+    <header>
+        <h1>{{ user.name }} {{ user.surname }} </h1>
+    </header>
+
+    <nav>
+    </nav>
+
+    <section id="profile">
+        <h2>Profil</h2>
+        <div class="profile">
+            
+            <div class="profile-info-update">
+                <form method="post" action="{% url 'update' user.id%}">
+                    {% csrf_token %}
+                    <label for="name">Adı:</label>
+                    <input type="text" id="name" name="name" value="{{ user.name }}" required>
+                    <br>
+
+                    <label for="surname">Soyadı:</label>
+                    <input type="text" id="surname" name="surname" value="{{ user.surname }}" required>
+                    <br>
+
+                    <label for="email">E-Posta:</label>
+                    <input type="text" id="email" name="email" value="{{ user.email }}" required>
+                    <br>
+
+                    <label for="birth-date">Doğum Tarihi:</label>
+                    <input type="date" name="birth_date" value="{{ user.dogum_tarihi }}" required>
+                    <br>
+
+                    <label for="gender">Cinsiyet:</label>
+                    <select name="gender">
+                        <option value="Erkek" {% if user.cinsiyet == 'Erkek' %}selected{% endif %}>Erkek</option>
+                        <option value="Kadın" {% if user.cinsiyet == 'Kadın' %}selected{% endif %}>Kadın</option>
+                    </select>
+                    <br>
+
+                    <label for="phone">Telefon</label>
+                    <input type="tel" name="phone" value="{{ user.telefon }}" required>
+                    <br>
+
+                    <label for="password">Şifre:</label>
+                    <input type="password" id="password" name="password" value="{{ user.password }}" required>
+                    <br>
+
+
+                    <input type="submit" value="Güncelle">
+                </form>
+            </div>
+
+            <div class="profile-info">
+                <img src="{% static img_name  %}" alt="Profil Resmi" width="700" height="200">
+                <ul>
+                    <li><strong>Ad:</strong> {{ user.name }}</li>
+                    <li><strong>Soyad:</strong> {{ user.surname }} </li>
+                    <li><strong>Doğum Tarihi:</strong> {{ user.dogum_tarihi }} </li>
+                    <li><strong>E-mail:</strong> {{ user.email }} </li>
+                    <li><strong>Telefon Numarası:</strong> {{ user.telefon }} </li>
+                    <li><strong>Cinsiyet:</strong> {{ user.cinsiyet }} </li>
+                </ul>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section id="exercise">
+        <br/>
+        <h3>Egzersiz Planları</h3>
+        <div class="exercise-card">
+            <img src="{% static 'Photos/photo1.jpg' %}">
+            <div class="exercise-card-content">
+                <form method="post" action="{% url 'viewExerciseProgramUser' user.id %}">
+                    {% csrf_token %}
+                    <h3>Egzersiz Adı 1</h3>
+                    <p>Hedef: {{hedef}} <br>
+                        Başlangıç Tarihi: {{startDays}} <br/>
+                        Bitiş Tarihi: {{finishDays}} <br/>
+                    <button type="submit">Egzersiz Planı Görüntüle</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="nutrition">
+        <br/>
+        <div class="nutrition-card">
+            <img src="{% static 'Photos/photo2.jpg' %}">
+            <div class="nutrition-card-content">
+            <form method="post" action="{% url 'viewNutritionProgramUser' user.id %}">
+                {% csrf_token %}
+                <h3>Beslenme Programı </h3>
+                <p>Kalori hedefi: {{kalori}}</p>
+                <p>Hedef: {{hedef}}</p>
+                <button type="submit" class="btn btn-danger">Beslenme Planı Görüntüle</button>
+            </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="messages">
+        <h2>Mesajlar</h2>
+        <div class="message-box">
+            <table id="message-table">
+                <tr>
+                    <th>Gelen Mesajlar</th>
+                </tr>
+                {% for message in messages %}
+                    <tr>
+                        <td> {{message.message}} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+            <br>
+            <form method="post" action="{% url 'sendMessageUser' user.id %}">
+                {% csrf_token %}
+                <input type="hidden" id="trainer" name="trainer" value="{{user.trainer_username}}" >
+                <textarea id="message" name="message" rows="4" cols="50"></textarea>
+                <br><br>
+                <button type="submit">Mesaj Gönder</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="progress">
+        <h2>İlerleme Kayıtları</h2>
+        <div class="progress-records">
+            <table>
+                <tr>
+                    <th>Kilo</th>
+                    <th>Boy</th>
+                    <th>Vücut Yağ Oranı</th>
+                    <th>Vücut Kitle İndeksi</th>
+                </tr>
+                <tr>
+                <form id="addTrainerForm" method="post" action="{% url 'updateInfo' user.id %}">
+                    {% csrf_token %}
+                    <td><input type="text" name="kilo" value="{{ user.kilo }}"></td>
+                    <td><input type="text" name="boy" value="{{ user.boy }}"></td>
+                    <td><input type="text" name="yag_orani" value="{{ user.yag }}"></td>
+                    <td>{{user.kitle_endeksi}}</td>
+                    <button type="submit" class="btn btn-danger" style="background-color:#4caf50; color:#fff; padding:10px; border: none; border-radius:4px; cursor: pointer; width:100%">Güncelle</button>
+                </form>
+            </tr>
+            </table>
+        </div>
+    </section>
+
+</body>
+</html>
